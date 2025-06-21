@@ -21,3 +21,26 @@ def main():
 
 if __name__=="__main__":
     main()
+
+"""
+TO SOLVE TIMELIMIT EXCEEDED PROBLEM
+
+from sortedcontainers import SortedList
+
+def main():
+    n, m = map(int, input().split())
+    h = SortedList(map(int, input().split()))  # ticket prices
+    t = list(map(int, input().split()))        # customer budgets
+
+    for customer in t:
+        idx = h.bisect_right(customer)
+        if idx == 0:
+            print(-1)
+        else:
+            print(h[idx - 1])
+            h.pop(idx - 1)
+
+if __name__ == "__main__":
+    main()
+
+"""
