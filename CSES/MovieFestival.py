@@ -1,4 +1,7 @@
+import sys # To solve Time Limit Exceeded Issue
+
 def main():
+    input = sys.stdin.readline # Faster Input
     n = int(input())
     movie = []
 
