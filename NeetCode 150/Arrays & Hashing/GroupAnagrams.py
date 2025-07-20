@@ -1,14 +1,16 @@
-from typing import DefaultDict,List
+from collections import defaultdict
+from typing import List
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        result = DefaultDict(list)
+        anagram_map = defaultdict(list)  # Hashmap to group anagrams
 
         for s in strs:
-            count = [0]*26
-            
-            for char in s:
-            
-                count[ord(char)-ord('a')] +=1
+            count = [0] * 26  # Frequency of each letter in the word
 
-            result[tuple(count)].append(s)
-        return list(result.values())
+            for char in s:
+                count[ord(char) - ord('a')] += 1  # Count characters
+
+            anagram_map[tuple(count)].append(s)  # Use tuple as key
+
+        return list(anagram_map.values())  # Convert dict_values to list
