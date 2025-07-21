@@ -1,13 +1,4 @@
-from typing import List
-class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        
-        count = {}
-
-        for num in nums:
-            count[num] = 1 + count.get(num,0)
-
-        """
+"""
         We create a bucket list to organize numbers based on their frequencies.
         Each bucket corresponds to a frequency, and all numbers with the same frequency are placed in the same bucket.
 
@@ -18,18 +9,32 @@ class Solution:
         If a number appears 3 times, it goes into the bucket at index 3.
 
         Buckets make it easy to group numbers by frequency.
-        """
+"""
+from typing import List
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # Count the occurances
+        seen = {}
+        bucket = [[] for i in range(len(nums)+1)]
+        for i in nums:
+            if i in seen:
+                seen[i]+=1
+            else:
+                seen[i]=1
         
-        freq = [[] for i in range(len(nums)+1)] 
-        
-        for num,c in count.items():
-            freq[c].append(num)
-        
-        res = []
+        for num, count in seen.items(): # Bucket sort technique [count:number format]
+            bucket[count].append(num)
 
-        for i in range(len(freq)-1,0,-1):
-            for num in freq[i]:
-                res.append(num)
-                if len(res) == k:
-                    return res
+        result = []
+        for i in range(len(bucket)-1,0,-1): # Getting the most frequent elements (descending order)
+            for n in bucket[i]:
+                result.append(n)
+                if len(result) == k:
+                    return result
+
+
+        
+        
+        
+        
 
