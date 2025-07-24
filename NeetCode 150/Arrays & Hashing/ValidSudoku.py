@@ -1,26 +1,25 @@
 from typing import List
-import collections
+from collections import defaultdict
 
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-
-        #using hashmap {key:column number,value:set of values}
-
-        columns = collections.defaultdict(set)
-        rows = collections.defaultdict(set)
-        squares = collections.defaultdict(set)
-
-        for row in range(9):
-            for col in range(9):
-                if board[row][col] == ".":
-                    continue
-                if (board[row][col] in rows[row]) or (board[row][col] in columns[col]) or (board[row][col] in squares[(row//3,col//3)]):
-                    return False
-                    
-                columns[col].add(board[row][col])
-                rows[row].add(board[row][col])
-                squares[(row//3,col//3)].add(board[row][col])
-        return True
-
-
         
+        # Hashset for each row to check for duplicates
+        # Hashset for each columns to check for duplicates
+        # Hashset for checking each 3x3 grids
+        
+        columns = defaultdict(set) # Key = Col. no., Value = set
+        rows = defaultdict(set) # Key = Row. no., Value = set
+        grids = defaultdict(set) # Key = Grid. no., Value = set
+
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    continue
+                else:
+                    if (board[i][j] in rows[i] or board[i][j] in columns[j] or board[i][j] in grids[(i//3,j//3)]):
+                        return False
+                    rows[i].add(board[i][j])
+                    columns[j].add(board[i][j])
+                    grids[(i//3,j//3)].add(board[i][j])
+        return True
