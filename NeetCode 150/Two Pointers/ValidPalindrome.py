@@ -1,5 +1,17 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        """
+
+        Simple solution
+
+        new_string = ""
+        for c in s:
+            if c.isalnum():
+                new_string+= c.lower()
+        return new_string == new_string[::-1]
+        
+        """
+        
         left = 0
         right = len(s)-1
 
