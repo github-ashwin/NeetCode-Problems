@@ -6,7 +6,7 @@ class Solution:
         nums.sort()
 
         for i, val in enumerate(nums):
-            if i > 0 and val == nums[i - 1]:
+            if i > 0 and val == nums[i - 1]: # i>0 means not first value in i/p array and the value is same as the previous value, to prevent duplication
                 continue
             
             p1 = i + 1
@@ -21,6 +21,7 @@ class Solution:
                 else:
                     result.append([val, nums[p1], nums[p2]])
                     
+                    # Prevent duplication
                     while p1 < p2 and nums[p1] == nums[p1 + 1]:
                         p1 += 1
                     
@@ -31,3 +32,4 @@ class Solution:
                     p2 -= 1
 
         return result
+
