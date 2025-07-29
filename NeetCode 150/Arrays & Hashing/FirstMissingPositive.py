@@ -9,4 +9,23 @@ class Solution:
             if num > 0 and missing == num:
                 missing +=1
         return missing
+    
+    """
+    Boolean Array method
+
+    n = len(nums)
+
+        seen = [False] * (n+1)
+
+        for num in nums:
+            if 0 < num <= n:
+                seen[num] = True
+
+        for i in range(1,n+1):
+            if seen[i] == False:
+                return i
+        
+        return n+1
+        
+    """
         
