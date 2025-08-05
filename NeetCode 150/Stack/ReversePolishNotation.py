@@ -1,24 +1,23 @@
 from typing import List
+
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
-
-        for c in tokens:
-            if c == '+':
-                stack.append(stack.pop() + stack.pop())
-            elif c == '-':
-                n1 = stack.pop()
-                n2 = stack.pop()
-                stack.append(n2 - n1)
-            elif c == '*':
-                stack.append(stack.pop() * stack.pop())
-            elif c == '/':
-                n1 = stack.pop()
-                n2 = stack.pop()
-                stack.append(int(n2/n1))
+        for ch in tokens:
+            # checks whether the character is operator or operand
+            if ch not in {"+", "-", "*", "/"}:
+                stack.append(int(ch))
             else:
-                stack.append(int(c))
+                num2 = stack.pop() # num2 comes first
+                num1 = stack.pop() # then num1
+
+                if ch == '+':
+                    stack.append(num1 + num2)
+                elif ch == '-':
+                    stack.append(num1 - num2)
+                elif ch == '*':
+                    stack.append(num1 * num2)
+                elif ch == '/':
+                    stack.append(int(num1 / num2))
         
         return stack[0]
-            
-        
