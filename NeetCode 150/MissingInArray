@@ -1,0 +1,12 @@
+class Solution:
+    def missingNum(self, arr):
+        # code here
+        # Boolean bucket approach
+        
+        n = len(arr)
+        bucket = [False] * (n + 2)
+
+        for num in arr:
+            bucket[num] = True
+
+        return bucket[1:n+2].index(False) + 1
